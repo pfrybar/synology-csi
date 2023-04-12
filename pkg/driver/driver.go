@@ -18,18 +18,18 @@ package driver
 
 import (
 	"github.com/container-storage-interface/spec/lib/go/csi"
+	"github.com/pfrybar/synology-csi/pkg/interfaces"
+	"github.com/pfrybar/synology-csi/pkg/utils"
 	log "github.com/sirupsen/logrus"
-	"github.com/SynologyOpenSource/synology-csi/pkg/interfaces"
-	"github.com/SynologyOpenSource/synology-csi/pkg/utils"
 )
 
 const (
-	DriverName = "csi.san.synology.com" // CSI dirver name
+	DriverName    = "csi.san.synology.com" // CSI dirver name
 	DriverVersion = "1.1.1"
 )
 
 var (
-	MultipathEnabled = true
+	MultipathEnabled      = true
 	supportedProtocolList = []string{utils.ProtocolIscsi, utils.ProtocolSmb}
 )
 

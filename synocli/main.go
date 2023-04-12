@@ -5,7 +5,7 @@
 package main
 
 import (
-	"github.com/SynologyOpenSource/synology-csi/synocli/cmd"
+	"github.com/pfrybar/synology-csi/synocli/cmd"
 )
 
 func main() {

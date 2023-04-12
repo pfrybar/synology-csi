@@ -9,15 +9,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SynologyOpenSource/synology-csi/pkg/utils"
+	"github.com/pfrybar/synology-csi/pkg/utils"
 )
 
 func (dsm *DSM) IsUC() bool {
 	dsmSysInfo, err := dsm.DsmSystemInfoGet()
-    if err != nil {
-        log.Errorf("Failed to get DSM[%s] system info", dsm.Ip)
-        return false
-    }
+	if err != nil {
+		log.Errorf("Failed to get DSM[%s] system info", dsm.Ip)
+		return false
+	}
 	return strings.Contains(dsmSysInfo.FirmwareVer, "DSM UC")
 }
 
@@ -71,7 +71,7 @@ func (dsm *DSM) GetAnotherController() (*DSM, error) {
 				continue
 			}
 
-			if netIf.Status == "connected" && CheckIpReachable(netIf.Ip, anotherDsm.Port){
+			if netIf.Status == "connected" && CheckIpReachable(netIf.Ip, anotherDsm.Port) {
 				anotherDsm.Ip = netIf.Ip
 				return anotherDsm, nil
 			}

@@ -8,13 +8,13 @@ import (
 
 	sanity "github.com/kubernetes-csi/csi-test/v4/pkg/sanity"
 
-	"github.com/SynologyOpenSource/synology-csi/pkg/driver"
-	"github.com/SynologyOpenSource/synology-csi/pkg/dsm/common"
-	"github.com/SynologyOpenSource/synology-csi/pkg/dsm/service"
+	"github.com/pfrybar/synology-csi/pkg/driver"
+	"github.com/pfrybar/synology-csi/pkg/dsm/common"
+	"github.com/pfrybar/synology-csi/pkg/dsm/service"
 )
 
 const (
-	ConfigPath = "./../../config/client-info.yml"
+	ConfigPath      = "./../../config/client-info.yml"
 	SecretsFilePath = "./sanity-test-secret-file.yaml"
 )
 

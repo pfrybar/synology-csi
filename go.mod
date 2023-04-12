@@ -1,4 +1,4 @@
-module github.com/SynologyOpenSource/synology-csi
+module github.com/pfrybar/synology-csi
 
 go 1.16
 
@@ -10,7 +10,6 @@ require (
 	github.com/kubernetes-csi/csi-test/v4 v4.3.0
 	github.com/sirupsen/logrus v1.7.0
 	github.com/spf13/cobra v1.1.3
-	github.com/spf13/pflag v1.0.5
 	google.golang.org/grpc v1.34.0
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/yaml.v2 v2.4.0

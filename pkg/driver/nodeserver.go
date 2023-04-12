@@ -31,10 +31,10 @@ import (
 	"google.golang.org/grpc/status"
 	"k8s.io/mount-utils"
 
-	"github.com/SynologyOpenSource/synology-csi/pkg/dsm/webapi"
-	"github.com/SynologyOpenSource/synology-csi/pkg/interfaces"
-	"github.com/SynologyOpenSource/synology-csi/pkg/models"
-	"github.com/SynologyOpenSource/synology-csi/pkg/utils"
+	"github.com/pfrybar/synology-csi/pkg/dsm/webapi"
+	"github.com/pfrybar/synology-csi/pkg/interfaces"
+	"github.com/pfrybar/synology-csi/pkg/models"
+	"github.com/pfrybar/synology-csi/pkg/utils"
 )
 
 type nodeServer struct {
@@ -289,9 +289,9 @@ func (ns *nodeServer) setSMBVolumePermission(sourcePath string, userName string,
 
 	permissions := append([]*webapi.SharePermission{}, &permission)
 	spec := webapi.SharePermissionSetSpec{
-		Name: shareName,
+		Name:          shareName,
 		UserGroupType: models.UserGroupTypeLocalUser,
-		Permissions: permissions,
+		Permissions:   permissions,
 	}
 
 	return dsm.SharePermissionSet(spec)
@@ -377,7 +377,6 @@ func (ns *nodeServer) nodeStageSMBVolume(ctx context.Context, spec *models.NodeS
 		options = append(options, fmt.Sprintf("gid=%s", volumeMountGroup))
 	}
 
-
 	if domain != "" {
 		options = append(options, fmt.Sprintf("%s=%s", "domain", domain))
 	}
@@ -395,7 +394,7 @@ func (ns *nodeServer) NodeStageVolume(ctx context.Context, req *csi.NodeStageVol
 
 	if volumeId == "" || stagingTargetPath == "" || volumeCapability == nil {
 		return nil, status.Error(codes.InvalidArgument,
-		 "InvalidArgument: Please check volume ID, staging target path and volume capability.")
+			"InvalidArgument: Please check volume ID, staging target path and volume capability.")
 	}
 
 	if volumeCapability.GetBlock() != nil && volumeCapability.GetMount() != nil {
@@ -403,11 +402,11 @@ func (ns *nodeServer) NodeStageVolume(ctx context.Context, req *csi.NodeStageVol
 	}
 
 	spec := &models.NodeStageVolumeSpec{
-		VolumeId: volumeId,
+		VolumeId:          volumeId,
 		StagingTargetPath: stagingTargetPath,
-		VolumeCapability: volumeCapability,
-		Dsm: req.VolumeContext["dsm"],
-		Source: req.VolumeContext["source"], // filled by CreateVolume response
+		VolumeCapability:  volumeCapability,
+		Dsm:               req.VolumeContext["dsm"],
+		Source:            req.VolumeContext["source"], // filled by CreateVolume response
 	}
 
 	switch req.VolumeContext["protocol"] {
@@ -571,13 +570,12 @@ func (ns *nodeServer) NodeGetVolumeStats(ctx context.Context, req *csi.NodeGetVo
 			fmt.Sprintf("Volume[%s] does not exist on the %s", volumeId, volumePath))
 	}
 
-
 	if k8sVolume.Protocol == utils.ProtocolSmb {
 		return &csi.NodeGetVolumeStatsResponse{
 			Usage: []*csi.VolumeUsage{
 				&csi.VolumeUsage{
-					Total:     k8sVolume.SizeInBytes,
-					Unit:      csi.VolumeUsage_BYTES,
+					Total: k8sVolume.SizeInBytes,
+					Unit:  csi.VolumeUsage_BYTES,
 				},
 			},
 		}, nil

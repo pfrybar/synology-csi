@@ -3,9 +3,9 @@
 package interfaces
 
 import (
-	"github.com/SynologyOpenSource/synology-csi/pkg/dsm/common"
-	"github.com/SynologyOpenSource/synology-csi/pkg/dsm/webapi"
-	"github.com/SynologyOpenSource/synology-csi/pkg/models"
+	"github.com/pfrybar/synology-csi/pkg/dsm/common"
+	"github.com/pfrybar/synology-csi/pkg/dsm/webapi"
+	"github.com/pfrybar/synology-csi/pkg/models"
 )
 
 // An interface for DSM service
